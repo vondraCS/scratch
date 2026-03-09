@@ -1,0 +1,33 @@
+#player {
+  grid-area: player;
+  background-color: purple;
+
+  border-top: 1px solid var(--accent-color);
+  padding: 1% 5%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#play-button {
+  background-color: #1a49ba;
+  color: white;
+
+  width: 75px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#play-symbol > div {
+  aspect-ratio: 1;
+  width: 0px;
+  margin-left: 8px;
+
+  border-top: 25px solid transparent;
+  border-left: 36px solid #ffffff;
+  border-bottom: 25px solid transparent;
+}

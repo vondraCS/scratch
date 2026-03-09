@@ -1,0 +1,154 @@
+:root {
+  --main-color: #1a49ba;
+  --secondary-color: #418edb;
+  --background-color: rgb(24, 25, 26);
+  --accent-color: rgb(180, 186, 191);
+  --gap: 10px;
+}
+
+#frame {
+  margin: 5vh 2.5vw;
+  height: 90vh;
+
+  --background-color: aqua;
+
+  display: grid;
+  grid-template-areas: "sidebar main" "sidebar player";
+  grid-template-columns: 0.65fr 1.35fr;
+  grid-template-rows: 1fr minmax(30px, 15vh);
+  gap: var(--gap);
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body,
+a,
+li {
+  color: aliceblue;
+
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 1em;
+  font-weight: 400px;
+  text-decoration: none;
+
+  margin: 0px;
+  padding: 0px;
+
+  background-color: transparent;
+}
+
+.headertext {
+  font-weight: 500;
+  font-size: 1.3em;
+}
+
+.subheadertext {
+  font-weight: 400;
+  font-size: 1em;
+}
+
+.subtext {
+  font-weight: 300;
+  font-size: 0.9em;
+}
+
+.primary-btn {
+  min-width: 20px;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+  text-align: center;
+
+  transition: background-color 0.1s ease;
+}
+
+.primary-btn:hover {
+  filter: opacity(0.8);
+  --background-color: var(--secondary-color);
+}
+
+.primary-btn:active {
+  filter: brightness(1.1);
+}
+
+.aspr1 {
+  aspect-ratio: 1;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.centered {
+  align-items: center;
+  justify-content: center;
+}
+
+.rounded {
+  border-radius: var(--gap);
+}
+
+.w100 {
+  width: 100%;
+}
+
+#horizontal-info-card {
+  display: grid;
+  grid-template-areas: "img title" "img desc" "img null";
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr 1fr 1fr;
+  text-align: left;
+  place-items: center left;
+}
+#horizontal-info-card > header {
+  grid-area: title;
+  -background-color: chocolate;
+
+  font-weight: 500;
+
+  padding: 0% 10% 0% 4%;
+  margin-left: var(--gap);
+}
+#horizontal-info-card > main {
+  grid-area: desc;
+  -background-color: brown;
+
+  filter: opacity(0.8);
+  font-weight: 400;
+
+  padding: 0% 10% 0% 4%;
+  margin-left: calc(var(--gap) * 2);
+}
+#horizontal-info-card > img {
+  grid-area: img;
+
+  aspect-ratio: 1;
+  height: 100%;
+  background-color: rgba(167, 167, 167, 0.17);
+
+  border-radius: 0px;
+  border: none;
+  border-width: 0px;
+}
+
+#album-image-caption-card > img {
+  aspect-ratio: 1;
+  height: 100%;
+  background-color: #1a49ba;
+}
