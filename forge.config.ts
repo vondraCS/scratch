@@ -21,15 +21,13 @@ const config: ForgeConfig = {
     new MakerSquirrel({}),
     new MakerZIP({}, ['darwin']),
     new MakerRpm({}),
-    new MakerDeb({}),
-    {
-      name: '@electron-forge/maker-deb',
-        config: {
-          options: {
-            icon: '/src/assets/images/scratchlogo.png'
-          }
-      }
-    }
+    new MakerDeb({
+      config: {
+        options: {
+          icon: '/src/assets/images/scratchlogo.png',
+        },
+      },
+    }),
   ],
   plugins: [
     new AutoUnpackNativesPlugin({}),
@@ -49,8 +47,6 @@ const config: ForgeConfig = {
         ],
       },
     }),
-    // Fuses are used to enable/disable various Electron functionality
-    // at package time, before code signing the application
     new FusesPlugin({
       version: FuseVersion.V1,
       [FuseV1Options.RunAsNode]: false,

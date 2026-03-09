@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { playButtonClicked, isPlayingState } from './PlayButton';
+import { PlayButton } from './PlayButton';
 
+export function Player() {
+  const [isPlaying, setIsPlaying] = useState(false);
 
-export function Player(){
-    return(
-        <span id = "player">
-            <div>
-                <button id = 'play-button'
-                onClick={playButtonClicked}
-                className= {`primary-btn ${isPlayingState() ? "Playing" : "Paused"}`}>
-                {isPlayingState() ? "Playing" : "Paused"}
-                </button>
-            </div>
-        </span>
-    );
+  return (
+    <span id="player">
+      <div>
+        <PlayButton isPlaying={isPlaying} onClick={() => setIsPlaying(p => !p)} />
+      </div>
+    </span>
+  );
 }

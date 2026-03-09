@@ -1,24 +1,20 @@
-import { GetStorageDirectory } from "./Storage/Storage";
-import * as fs from 'fs';
+// File parsing utilities — all fs operations go through IPC (see src/ipc/handlers.ts).
+// These functions are stubs to be implemented once the relevant IPC channels are added.
 
-function ParseAlbumInfo(filePath: string){
-    //const filePath = GetStorageDirectory();
-
-    fs.readFile(filePath, (err, buffer) => {
-        if(err) throw err;
-        
-        console.log(buffer);
-    });
+export async function ParseAlbumInfo(_filePath: string): Promise<void> {
+  // TODO: invoke IPC channel to read and parse album metadata
 }
 
-function ParsePlaylistInfo(){
-
+export async function ParsePlaylistInfo(_filePath: string): Promise<void> {
+  // TODO: invoke IPC channel to parse playlist file
 }
 
-function GetAlbumTracks(){
-
+export async function GetAlbumTracks(_albumPath: string): Promise<string[]> {
+  // TODO: invoke IPC channel to list tracks in album directory
+  return [];
 }
 
-function GetPlaylistTracks(){
-
+export async function GetPlaylistTracks(_playlistPath: string): Promise<string[]> {
+  // TODO: invoke IPC channel to get tracks from playlist
+  return [];
 }

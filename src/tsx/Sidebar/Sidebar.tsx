@@ -1,44 +1,33 @@
-import { Horizontal_Info_Card_Import, Album_Image_Caption_Card_Import } from "../Components/Cards";
+import React from 'react';
+import { HorizontalInfoCard, AlbumImageCaptionCard } from '../Components/Cards';
 
-export function Sidebar(){
-    const gap = 10;
-    //(imgSrc: string, altText: string, title: string, artist: string, year: number, styling: Array<React.CSSProperties>)
-    const Image_Caption_Card = Album_Image_Caption_Card_Import("steelydan.jpg", "alt text", "album", "steely dan", 2099, [
-        {width: `calc(50% - ${gap}px)`}
-    ]);
-    //imgSrc, altText, title, descText, height_val
-    const height = "15vh";
-    const numPlaylists = Math.min(4, 4); //get num of playlists dynamically later
+export function Sidebar() {
+  const gap = 10;
 
-    const Playlist_Cards = [];
-
-    /*for (let i = 0; i < numPlaylists; i++) {
-        Playlist_Cards[i] = Horizontal_Info_Card_Import("", "", "ttitle", "desc", styling);
-    }*/
-
-    Playlist_Cards[0] = Horizontal_Info_Card_Import(null, "", "Playlist1", "desc", [
-        {height: "15vh"}
-    ]);
-    Playlist_Cards[1] = Horizontal_Info_Card_Import(null, "", "Playlist2", "desc", [
-        {height: "15vh"}
-    ]);
-
-    return (
-        <section id="sidebar" style={{paddingRight: `${gap}px`}}>
-            <div><h2 className="headertext" style={{paddingBottom: `${gap/2}px`}}>Playlists 
-                <button className='primary-btn'>+</button></h2> 
-                <ul className="flex-row" style={{gap: `${gap/2}px`}}>
-                    {Playlist_Cards[0]}
-                    {Playlist_Cards[1]}
-                    {Playlist_Cards[2]}
-                    {Playlist_Cards[3]}
-                </ul></div>
-            <div><h2>Albums</h2>
-                <ul className="flex-wrap" style={{gap: `${gap}px`, paddingBottom: `${gap/2}px`}}>
-                    {Image_Caption_Card}
-                    {Image_Caption_Card}
-
-                </ul></div>
-        </section>
-    );
+  return (
+    <section id="sidebar" style={{ paddingRight: `${gap}px` }}>
+      <div>
+        <h2 className="headertext" style={{ paddingBottom: `${gap / 2}px` }}>
+          Playlists <button className="primary-btn">+</button>
+        </h2>
+        <ul className="flex-row" style={{ gap: `${gap / 2}px` }}>
+          <HorizontalInfoCard title="Playlist 1" descText="desc" style={{ height: '15vh' }} />
+          <HorizontalInfoCard title="Playlist 2" descText="desc" style={{ height: '15vh' }} />
+        </ul>
+      </div>
+      <div>
+        <h2>Albums</h2>
+        <ul className="flex-wrap" style={{ gap: `${gap}px`, paddingBottom: `${gap / 2}px` }}>
+          <AlbumImageCaptionCard
+            imgName="steelydan.jpg"
+            altText="Steely Dan album"
+            title="Album"
+            artist="Steely Dan"
+            year={2099}
+            style={{ width: `calc(50% - ${gap}px)` }}
+          />
+        </ul>
+      </div>
+    </section>
+  );
 }

@@ -1,6 +1,5 @@
 #player {
   grid-area: player;
-  background-color: purple;
 
   border-top: 1px solid var(--accent-color);
   padding: 1% 5%;
@@ -11,7 +10,7 @@
 }
 
 #play-button {
-  background-color: #1a49ba;
+  background-color: var(--main-color);
   color: white;
 
   width: 75px;
