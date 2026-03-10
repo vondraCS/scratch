@@ -1,4 +1,49 @@
 #main {
   grid-area: main;
   padding: 0% 5%;
+  overflow-y: auto;
 }
+
+/* Main sections layout */
+.main-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.section-header-row {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.section-header {
+  font-weight: 600;
+  font-size: 1.4em;
+  margin-bottom: 5px;
+}
+
+/* Text Buttons (e.g., "Show All") */
+.text-btn {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.text-btn:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+/* Placeholder when album has no cover art */
+.album-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: var(--background-secondary-color);
+}
+

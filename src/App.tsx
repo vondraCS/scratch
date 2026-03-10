@@ -7,6 +7,7 @@ import './styling/root.css';
 import './styling/main.css';
 import './styling/sidebar.css';
 import './styling/player.css';
+import './styling/cards.css';
 
 const App: React.FC = () => {
   return (

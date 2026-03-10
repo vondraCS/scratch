@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface HorizontalInfoCardProps {
+interface PlaylistHorizontalCardProps {
   imgSrc?: string;
   altText?: string;
   title: string;
@@ -8,9 +8,9 @@ interface HorizontalInfoCardProps {
   style?: React.CSSProperties;
 }
 
-export function HorizontalInfoCard({ imgSrc, altText, title, descText, style }: HorizontalInfoCardProps) {
+export function PlaylistHorizontalCard({ imgSrc, altText, title, descText, style }: PlaylistHorizontalCardProps) {
   return (
-    <div className="horizontal-info-card aspr4 rounded w100" style={style}>
+    <div className="playlist-horizontal-card w100" style={style}>
       <img src={imgSrc} alt={altText} className="rounded" />
       <header className="subheadertext">{title}</header>
       <main className="subtext">{descText}</main>
@@ -18,22 +18,41 @@ export function HorizontalInfoCard({ imgSrc, altText, title, descText, style }: 
   );
 }
 
-interface AlbumImageCaptionCardProps {
-  imgName: string;
+interface AlbumLargeCoverCardProps {
+  coverArt: string | null;
   altText?: string;
   title: string;
   artist: string;
-  year: number;
+  year: number | null;
   style?: React.CSSProperties;
 }
 
-export function AlbumImageCaptionCard({ imgName, altText, title, artist, year, style }: AlbumImageCaptionCardProps) {
+export function AlbumLargeCoverCard({ coverArt, altText, title, artist, year, style }: AlbumLargeCoverCardProps) {
   return (
-    <div className="album-image-caption-card flex-col centered aspr1 rounded" style={style}>
-      <img src={`/src/assets/images/albums/${imgName}`} alt={altText} className="rounded" />
+    <div className="album-large-cover-card rows centered rounded" style={style}>
+      {coverArt
+        ? <img src={coverArt} alt={altText} className="rounded" />
+        : <div className="album-placeholder rounded" />
+      }
       <header>{title}</header>
       <p>{artist}</p>
-      <p>{year}</p>
+      {year && <p>{year}</p>}
+    </div>
+  );
+}
+
+interface PlaylistCompactCardProps {
+  imgSrc?: string;
+  altText?: string;
+  text: string;
+  style?: React.CSSProperties;
+}
+
+export function PlaylistCompactCard({ imgSrc, altText, text, style }: PlaylistCompactCardProps) {
+  return (
+    <div className="playlist-compact-card w100" style={style}>
+      <img src={imgSrc} alt={altText} className="" />
+      <header className="subheadertext" style={{ textWrap: "wrap" }}>{text}</header>
     </div>
   );
 }

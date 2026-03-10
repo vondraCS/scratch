@@ -1,21 +1,26 @@
 #sidebar {
   grid-area: sidebar;
-  -background-color: green;
+  min-width: 200px;
+  max-width: 25vw;
+
 
   border-right: 1px solid var(--accent-color);
-  padding: 0%;
+  padding: 10px 0px 10px 10px; /* Add some padding so scrollbar has space */
 
   display: flex;
   flex-direction: column;
-  align-items: left;
-  justify-content: space-around;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
 
   text-align: left;
 }
 
-#sidebar > div > ul > li {
-  background-color: #1a49ba;
-  list-style-position: inside;
-  list-style-type: none;
-  padding-left: 1em;
+#sidebar > div {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+#sidebar>div>ul {
+  height: fit-content;
 }

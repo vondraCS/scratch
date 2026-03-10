@@ -1,20 +1,56 @@
-// File parsing utilities — all fs operations go through IPC (see src/ipc/handlers.ts).
-// These functions are stubs to be implemented once the relevant IPC channels are added.
+import { Track, Album } from '../types/music';
 
-export async function ParseAlbumInfo(_filePath: string): Promise<void> {
-  // TODO: invoke IPC channel to read and parse album metadata
+/**
+ * Scan the storage directory for audio files, parse metadata, and return all tracks.
+ */
+export async function scanLibrary(): Promise<Track[]> {
+  return window.electronAPI.scanLibrary();
 }
 
-export async function ParsePlaylistInfo(_filePath: string): Promise<void> {
-  // TODO: invoke IPC channel to parse playlist file
+/**
+ * Return the cached track list from the most recent scan.
+ */
+export async function getTracks(): Promise<Track[]> {
+  return window.electronAPI.getTracks();
 }
 
-export async function GetAlbumTracks(_albumPath: string): Promise<string[]> {
-  // TODO: invoke IPC channel to list tracks in album directory
-  return [];
-}
+/**
+ * Group a flat track list into Album objects, sorted alphabetically by album name.
+ */
+export function groupTracksByAlbum(tracks: Track[]): Album[] {
+  const albumMap = new Map<string, Album>();
 
-export async function GetPlaylistTracks(_playlistPath: string): Promise<string[]> {
-  // TODO: invoke IPC channel to get tracks from playlist
-  return [];
+  for (const track of tracks) {
+    const key = `${track.album}|||${track.albumArtist}`;
+
+    if (!albumMap.has(key)) {
+      albumMap.set(key, {
+        name: track.album,
+        artist: track.albumArtist,
+        year: track.year,
+        coverArt: track.coverArt,
+        tracks: [],
+      });
+    }
+
+    const album = albumMap.get(key)!;
+    album.tracks.push(track);
+
+    // Use cover art from whichever track has it
+    if (!album.coverArt && track.coverArt) {
+      album.coverArt = track.coverArt;
+    }
+    // Use the earliest year
+    if (track.year && (!album.year || track.year < album.year)) {
+      album.year = track.year;
+    }
+  }
+
+  // Sort tracks within each album by track number
+  for (const album of albumMap.values()) {
+    album.tracks.sort((a, b) => (a.trackNumber ?? 999) - (b.trackNumber ?? 999));
+  }
+
+  // Sort albums alphabetically
+  return Array.from(albumMap.values()).sort((a, b) => a.name.localeCompare(b.name));
 }

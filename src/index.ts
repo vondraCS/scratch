@@ -20,8 +20,12 @@ const createWindow = (): void => {
     show: false,
     backgroundColor: backgroundColor,
 
-    height: 600,
-    width: 800,
+    height: 800,
+    width: 1000,
+
+    minHeight: 400,
+    minWidth: 600,
+
 
     autoHideMenuBar: false,
 

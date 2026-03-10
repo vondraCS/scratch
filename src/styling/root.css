@@ -2,6 +2,7 @@
   --main-color: #1a49ba;
   --secondary-color: #418edb;
   --background-color: rgb(24, 25, 26);
+  --background-secondary-color: rgb(48, 48, 48);
   --accent-color: rgb(180, 186, 191);
   --gap: 10px;
 }
@@ -9,6 +10,8 @@
 * {
   margin: 0px;
   padding: 0px;
+
+  overflow: hidden;
 }
 
 body,
@@ -29,12 +32,16 @@ li {
 #frame {
   margin: 5vh 2.5vw;
   height: 90vh;
+  min-width: 1000px;
+  width: 100vw;
 
   display: grid;
   grid-template-areas: "sidebar main" "sidebar player";
   grid-template-columns: 0.65fr 1.35fr;
   grid-template-rows: 1fr minmax(30px, 15vh);
   gap: var(--gap);
+
+  overflow: hidden;
 }
 
 /* Typography */
@@ -83,12 +90,12 @@ li {
 }
 
 /* Layout utilities */
-.flex-col {
+.rows {
   display: flex;
   flex-direction: column;
 }
 
-.flex-row {
+.columns {
   display: flex;
   flex-direction: row;
 }
@@ -111,41 +118,20 @@ li {
   width: 100%;
 }
 
-/* Card components */
-.horizontal-info-card {
-  display: grid;
-  grid-template-areas: "img title" "img desc" "img null";
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: 1fr 1fr 1fr;
-  text-align: left;
-  place-items: center left;
+.scrollable{
+  overflow-y: auto;
 }
 
-.horizontal-info-card > header {
-  grid-area: title;
-  font-weight: 500;
-  padding: 0% 10% 0% 4%;
-  margin-left: var(--gap);
+.scrollable::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
 }
 
-.horizontal-info-card > main {
-  grid-area: desc;
-  filter: opacity(0.8);
-  font-weight: 400;
-  padding: 0% 10% 0% 4%;
-  margin-left: calc(var(--gap) * 2);
+.scrollable::-webkit-scrollbar-thumb {
+  background: var(--background-secondary-color);
+  border-radius: 10px;
 }
 
-.horizontal-info-card > img {
-  grid-area: img;
-  aspect-ratio: 1;
-  height: 100%;
-  background-color: rgba(167, 167, 167, 0.17);
-  border-radius: 0px;
-}
-
-.album-image-caption-card > img {
-  aspect-ratio: 1;
-  height: 100%;
-  background-color: var(--main-color);
+.scrollable::-webkit-scrollbar-corner {
+  background: rgba(0,0,0,0);
 }
