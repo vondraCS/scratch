@@ -22,10 +22,8 @@ const config: ForgeConfig = {
     new MakerZIP({}, ['darwin']),
     new MakerRpm({}),
     new MakerDeb({
-      config: {
-        options: {
-          icon: '/src/assets/images/scratchlogo.png',
-        },
+      options: {
+        icon: '/src/assets/images/scratchlogo.png',
       },
     }),
   ],

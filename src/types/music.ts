@@ -18,3 +18,29 @@ export interface Album {
   coverArt: string | null;
   tracks: Track[];
 }
+
+export interface Playlist {
+  name: string;
+  description: string;
+  coverArt: string | null;
+  tracks: Track[];
+}
+
+interface StoreData {
+  filePath: string;
+  favoriteAlbums: {
+    name: string;
+    path: string;
+  }[];
+  favoritePlaylists: {
+    name: string;
+    path: string;
+  }[];
+  recentlyPlayed: {
+    type: "album" | "playlist";
+    name: string;
+    path: string;
+    lastPlayed: string;
+  }[];
+  [key: string]: any;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Album } from '../../types/music';
-import { scanLibrary, groupTracksByAlbum } from '../ParseFiles';
+import { Album, StoreData } from '../../types/music';
+import { scanLibrary, groupTracksByAlbum, parseRecentlyPlayed } from '../ParseFiles';
 import { AlbumLargeCoverCard, PlaylistHorizontalCard, PlaylistCompactCard } from '../Components/Cards';
 
 export function Main() {
@@ -54,26 +54,78 @@ export function Main() {
     { title: "Chill", desc: "Relaxing vibes" },
   ];
 
+  
+function updateSectionPlaylists(): void {
+  
+}
+
+function updateSectionAlbums(): void {
+  
+}
+
+async function updateSectionRecentlyPlayed() {
+  let recentlyPlayed: string = null;
+  try{ 
+    recentlyPlayed = await window.electronAPI.getStoreData("recentlyPlayed");
+  } catch(err){console.log(err); return;}
+ 
+  await parseRecentlyPlayed();
+
+  if(recentlyPlayed.length == 0){
+    //if nothing in recently played, then hide section
+    const el = document.querySelector('#recently-played');
+    el.classList.add("hidden");
+  }else{
+    //unhide incase of hidden
+    const el = document.querySelector('#recently-played');
+    el.classList.remove("hidden");
+
+    for(const pl of recentlyPlayed){
+
+        //turn into react component
+        //imgSrc, altText, text, style
+        //we need to get the playlist/album's name, cover, and a reference/address to link to
+        //recently played stores the 
+        /*<PlaylistCompactCard 
+                      text={album.name}
+                      imgSrc={album.coverArt || undefined}
+                      altText={}
+                      style={{ width: `calc(25% - ${gap * 0.75}px)` }}
+                    />*/
+    }
+    
+  }
+  
+}
+function populateHomepage(): void {
+  console.log("starting");
+  updateSectionRecentlyPlayed();
+  updateSectionAlbums();
+  updateSectionPlaylists();
+  console.log("done");
+}
+populateHomepage();
+
   return (
     <main id="main" className="rows scrollable" style={{ gap: `${gap * 2}px`, paddingTop: `${gap}px`, paddingBottom: `${gap * 2}px` }}>
 
       {/* Section 1: Recently Played (Albums/Playlists) -> using HorizontalCompactCard */}
-      <section className="main-section" style={{}} >
+      <section id="recently-played" className="main-section" style={{}} >
         <h2 className="headertext section-header">Recently Played</h2>
         <div className="columns flex-wrap" style={{ gap: `${gap}px` }}>
-          {albums.slice(0, 4).map(album => (
+          {/*{albums.slice(0, 4).map(album => (
             <PlaylistCompactCard
               key={`recent-${album.name}`}
               text={album.name}
               imgSrc={album.coverArt || undefined}
               style={{ width: `calc(25% - ${gap * 0.75}px)` }}
             />
-          ))}
+          ))}*/}
         </div>
       </section>
 
       {/* Section 2: Albums */}
-      <section className="main-section">
+      <section id= "albums" className="main-section">
         <div className="section-header-row columns">
           <h2 className="headertext section-header">Albums</h2>
           <button className="text-btn subtext">Show All</button>
@@ -93,7 +145,7 @@ export function Main() {
       </section>
 
       {/* Section 3: Playlists */}
-      <section className="main-section">
+      <section id="playlists" className="main-section">
         <div className="section-header-row columns">
           <h2 className="headertext section-header">Playlists</h2>
           <button className="text-btn subtext">Show All</button>

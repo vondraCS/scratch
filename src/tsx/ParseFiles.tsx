@@ -1,4 +1,5 @@
 import { Track, Album } from '../types/music';
+import { PlaylistCompactCard } from './Components/Cards';
 
 /**
  * Scan the storage directory for audio files, parse metadata, and return all tracks.
@@ -54,3 +55,9 @@ export function groupTracksByAlbum(tracks: Track[]): Album[] {
   // Sort albums alphabetically
   return Array.from(albumMap.values()).sort((a, b) => a.name.localeCompare(b.name));
 }
+
+export async function parseRecentlyPlayed(): Promise<string[]>{
+  console.log("firing parse");
+  return window.electronAPI.parseRecentlyPlayed();
+}
+

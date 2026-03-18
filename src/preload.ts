@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import { IPC_CHANNELS } from './ipc/channels';
-import { Track } from './types/music';
+import { Track, StoreData } from './types/music';
 
 contextBridge.exposeInMainWorld('electronAPI', {
   getStorageDirectory: (): Promise<string | null> =>
@@ -11,4 +11,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
     ipcRenderer.invoke(IPC_CHANNELS.SCAN_LIBRARY),
   getTracks: (): Promise<Track[]> =>
     ipcRenderer.invoke(IPC_CHANNELS.GET_TRACKS),
+  getStoreData: (key: string): Promise<string> =>
+    ipcRenderer.invoke(IPC_CHANNELS.GET_STORE_DATA, key),
+  parseRecentlyPlayed: (): Promise<string[]> =>
+    ipcRenderer.invoke(IPC_CHANNELS.PARSE_RECENTLY_PLAYED),
 });
