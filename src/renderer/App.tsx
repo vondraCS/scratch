@@ -1,6 +1,6 @@
 import React from 'react';
 import { Player } from './tsx/Player/Player';
-import { Main } from './tsx/Main/Main';
+import { Homepage } from './tsx/Homepage/Homepage';
 import { Sidebar } from './tsx/Sidebar/Sidebar';
 
 import './styling/root.css';
@@ -13,7 +13,7 @@ const App: React.FC = () => {
   return (
     <div id="frame">
       <Sidebar />
-      <Main />
+      <Homepage />
       <Player />
     </div>
   );

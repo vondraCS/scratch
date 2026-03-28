@@ -1,4 +1,4 @@
-import { Track, Album } from '../types/music';
+import { Track, Album } from '../../main/types/datatypes';
 import { PlaylistCompactCard } from './Components/Cards';
 
 /**

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Album } from '../../types/music';
+import { Album } from '../../../main/types/datatypes';
 import { PlaylistHorizontalCard, AlbumLargeCoverCard } from '../Components/Cards';
 import { getTracks, groupTracksByAlbum } from '../ParseFiles';
 

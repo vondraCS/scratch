@@ -1,4 +1,4 @@
-import { Track } from './music';
+import { Track } from './datatypes';
 
 interface StoreData {
   filePath: string;

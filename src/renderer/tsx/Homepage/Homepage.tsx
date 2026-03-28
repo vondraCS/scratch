@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Album, StoreData } from '../../types/music';
+import { Album, UserData } from '../../../main/types/datatypes';
 import { scanLibrary, groupTracksByAlbum, parseRecentlyPlayed } from '../ParseFiles';
 import { AlbumLargeCoverCard, PlaylistHorizontalCard, PlaylistCompactCard } from '../Components/Cards';
 
-export function Main() {
+export function Homepage() {
   const [albums, setAlbums] = useState<Album[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasDirectory, setHasDirectory] = useState(true);
@@ -25,12 +25,12 @@ export function Main() {
   }, []);
 
   if (loading) {
-    return <main id="main"><p className="subtext">Scanning library…</p></main>;
+    return <main id="homepage"><p className="subtext">Scanning library…</p></main>;
   }
 
   if (!hasDirectory) {
     return (
-      <main id="main">
+      <main id="homepage">
         <p className="subtext">No storage directory set. Use File → Set Storage Directory.</p>
       </main>
     );
@@ -38,7 +38,7 @@ export function Main() {
 
   if (albums.length === 0) {
     return (
-      <main id="main">
+      <main id="homepage">
         <p className="subtext">No audio files found in the storage directory.</p>
       </main>
     );
@@ -107,10 +107,10 @@ function populateHomepage(): void {
 populateHomepage();
 
   return (
-    <main id="main" className="rows scrollable" style={{ gap: `${gap * 2}px`, paddingTop: `${gap}px`, paddingBottom: `${gap * 2}px` }}>
+    <main id="homepage" className="rows scrollable" style={{ gap: `${gap * 2}px`, paddingTop: `${gap}px`, paddingBottom: `${gap * 2}px` }}>
 
       {/* Section 1: Recently Played (Albums/Playlists) -> using HorizontalCompactCard */}
-      <section id="recently-played" className="main-section" style={{}} >
+      <section id="recently-played" className="homepage-section" style={{}} >
         <h2 className="headertext section-header">Recently Played</h2>
         <div className="columns flex-wrap" style={{ gap: `${gap}px` }}>
           {/*{albums.slice(0, 4).map(album => (
@@ -125,7 +125,7 @@ populateHomepage();
       </section>
 
       {/* Section 2: Albums */}
-      <section id= "albums" className="main-section">
+      <section id= "albums" className="homepage-section">
         <div className="section-header-row columns">
           <h2 className="headertext section-header">Albums</h2>
           <button className="text-btn subtext">Show All</button>
@@ -145,7 +145,7 @@ populateHomepage();
       </section>
 
       {/* Section 3: Playlists */}
-      <section id="playlists" className="main-section">
+      <section id="playlists" className="homepage-section">
         <div className="section-header-row columns">
           <h2 className="headertext section-header">Playlists</h2>
           <button className="text-btn subtext">Show All</button>

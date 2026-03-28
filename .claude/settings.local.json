@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm search:*)",
+      "Bash(npm view:*)",
+      "Bash(claude mcp:*)"
+    ]
+  }
+}

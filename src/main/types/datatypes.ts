@@ -26,7 +26,7 @@ export interface Playlist {
   tracks: Track[];
 }
 
-interface StoreData {
+export interface UserData {
   filePath: string;
   favoriteAlbums: {
     name: string;

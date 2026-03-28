@@ -1,6 +1,6 @@
 import { app, BrowserWindow, Menu, MenuItem } from 'electron';
 import path from 'path';
-import { registerIpcHandlers, setStorageDirectory, getStorageDirectory } from './ipc/handlers';
+import { registerIpcHandlers, setStorageDirectory, getStorageDirectory } from '../ipc/handlers';
 
 // Forge webpack magic constants
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;

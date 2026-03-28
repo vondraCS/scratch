@@ -1,11 +1,11 @@
-#main {
+#homepage {
   grid-area: main;
   padding: 0% 5%;
   overflow-y: auto;
 }
 
 /* Main sections layout */
-.main-section {
+.homepage-section {
   display: flex;
   flex-direction: column;
   gap: 15px;
