@@ -2,7 +2,7 @@ import { ipcMain, dialog, app } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
 import { IPC_CHANNELS } from './channels';
-import { Track, Playlist, UserData } from '../main/types/datatypes';
+import { Track, Playlist, UserData } from '../types/datatypes';
 
 
 //---------------DATA STORING--------------------------------------------------------------------------------------
@@ -59,6 +59,43 @@ export async function setStorageDirectory(): Promise<string | null> {
 //-----------------------------------------------------------------------------------------------------------------
 
 /*
+
+Whats needed:
+- parse m3u files to playlists/albums, and get the songs in each
+    - ParseMP3ToPlaylistObject
+- parse mp3 files to songs
+    - ParseMP3ToTrackObject
+- turn parsed files into react components (renderer)
+    - ParseObjectToPlaylistHorzCard
+    - ParseObjectToPlaylistImageCard
+    - ParseObjectToCompactCard
+    - ParseObjectToAlbumCard
+- update the homepage's react components (renderer)
+    - RefreshRecentlyPlayed
+    - RefreshRecentlyPlayedAlbums
+    - RefreshRecentlyPlayedPlaylists
+- update the sidebar's react components (renderer)
+    - RefreshSidebarPlaylists
+    - RefreshSidebarAlbums
+- store the currently played song, and the timeframe
+    - StoreCurrentlyPlayedSong
+    - GetCurrentlyPlayedSong
+- update the playerbar with the currently played song (renderer)
+    - RefreshPlayerBar
+- Add/remove songs from queue
+    - AddSongToQueue
+    - RemoveSongFromQueue
+    - PopNextSong
+    - ClearQueue
+- Player Buttons
+    - SkipToNextTrack
+    - RestartTrack
+    - SkipToLastTrack
+    - ShuffleSongs (on/off: boolean)
+- update m3u files with new songs or removed songs
+    - AddSongToM3U
+    - RemoveSongFromM3U
+    - SetM3USongs
 */
 
 

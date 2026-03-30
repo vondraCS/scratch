@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { IPC_CHANNELS } from '../ipc/channels';
+import { IPC_CHANNELS } from '../main/ipc/channels';
 import { Track, UserData } from '../main/types/datatypes';
 
 contextBridge.exposeInMainWorld('electronAPI', {
